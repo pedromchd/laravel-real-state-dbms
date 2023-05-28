@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(CasaController::class)->group(function () {
-  Route::get('/', 'home');
-  Route::get('/adicionar', 'adicionar');
+  Route::get('/', 'homeView');
+  Route::get('/adicionar', 'adicionarView');
   Route::post('/adicionar', 'adicionarCasa');
-  Route::get('editar/{id}', 'editar');
+  Route::get('editar/{id}', 'editarView');
   Route::post('editar/{id}', 'editarCasa');
   Route::get('deletar/{id}', 'deletarCasa');
 });

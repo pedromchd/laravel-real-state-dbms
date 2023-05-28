@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class CasaController extends Controller
 {
-  public function home()
+  public function homeView()
   {
     $casas = Casa::all();
     return view('home', ['casas' => $casas]);
   }
 
-  public function adicionar()
+  public function adicionarView()
   {
     return view('adicionar');
   }
@@ -30,7 +30,7 @@ class CasaController extends Controller
     return redirect('/');
   }
 
-  public function editar($id)
+  public function editarView($id)
   {
     $casa = Casa::find($id);
     return view('editar', ['casa' => $casa]);
