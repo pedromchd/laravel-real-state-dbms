@@ -13,11 +13,11 @@
   <div class="min-w-[50rem] my-5 p-10 bg-purple-300 rounded-lg shadow-lg">
     <header class="flex items-center justify-between">
       <h1 class="text-3xl font-bold">Casas</h1>
-      <a href="{{ url('adicionar') }}" class="px-3 py-2 bg-purple-400 rounded-md shadow-md">Adicionar</a>
+      <a href="{{ url('adicionar') }}" class="px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">Adicionar</a>
     </header>
     <main class="flex-grow mt-5 space-y-5">
       <section>
-        <form action="{{ url('home') }}" method="post">
+        <form action="{{ url('/') }}" method="post">
           @csrf
           <input type="search" name="search" id="search" placeholder="Pesquisar..." class="w-full p-2 bg-purple-200 rounded-md shadow-md outline-none focus:ring-2 focus:ring-purple-400">
         </form>
@@ -30,6 +30,7 @@
               <th class="p-2 border border-purple-500">Endereço</th>
               <th class="p-2 border border-purple-500">Preço</th>
               <th class="p-2 border border-purple-500">Situação</th>
+              <th class="p-2 border border-purple-500">Opções</th>
             </tr>
             @foreach ($casas as $casa)
               <tr>
@@ -46,6 +47,10 @@
                   @else
                     Indisponível
                   @endif
+                </td>
+                <td class="border border-purple-500 text-center">
+                  <a href='{{ url("editar/$casa[id]") }}' title="Editar" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">✏️</a>
+                  <a href='{{ url("deleter/$casa[id]") }}' title="Deletar" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">🗑️</a>
                 </td>
               </tr>
             @endforeach
