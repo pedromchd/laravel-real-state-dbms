@@ -12,6 +12,12 @@ class CasaController extends Controller
     return view('home', compact('casas'));
   }
 
+  public function pesquisarCasas(Request $request) {
+    $query = $request->input('q');
+    $casas = Casa::where('imobiliaria', 'LIKE', "%$query%")->orWhere('endereco', 'LIKE', "%$query%")->get();
+    return view('home', compact('casas', 'query'));
+  }
+
   public function adicionarView() {
     return view('adicionar');
   }

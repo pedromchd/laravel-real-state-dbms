@@ -12,17 +12,17 @@
 <body class="min-h-screen bg-purple-500 flex justify-center">
   <div class="min-w-[50rem] my-5 p-10 bg-purple-300 rounded-lg shadow-lg">
     <header class="flex items-center justify-between">
-      <h1 class="text-3xl font-bold">Casas</h1>
+      <a href={{ url('/') }}><h1 class="text-3xl font-bold">Casas</h1></a>
       <a href={{ url('adicionar') }} class="px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">Adicionar</a>
     </header>
     <main class="flex-grow mt-5 space-y-5">
       <section>
         <form action={{ url('pesquisa') }} method="get">
-          <input type="search" name="q" id="q" placeholder="Pesquisar casas por imobiliária e endereço..." class="w-full p-2 bg-purple-200 rounded-md shadow-md outline-none focus:ring-2 focus:ring-purple-400">
+          <input type="search" name="q" id="q" value="{{ isset($query) ? $query : '' }}" placeholder="Pesquisar casas por imobiliária e endereço..." class="w-full p-2 bg-purple-200 rounded-md shadow-md outline-none focus:ring-2 focus:ring-purple-400">
         </form>
       </section>
       <section>
-        @if ($casas)
+        @if ($casas->isNotEmpty())
           <table class="w-full shadow-md">
             <tr class="bg-purple-400">
               <th class="p-2 border border-purple-500">Imobiliária</th>
