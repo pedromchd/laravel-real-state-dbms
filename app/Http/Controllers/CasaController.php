@@ -7,49 +7,41 @@ use Illuminate\Http\Request;
 
 class CasaController extends Controller
 {
-  public function homeView()
-  {
+  public function homeView() {
     $casas = Casa::all();
-    return view('home', ['casas' => $casas]);
+    return view('home', compact('casas'));
   }
 
-  public function adicionarView()
-  {
+  public function adicionarView() {
     return view('adicionar');
   }
 
-  public function adicionarCasa(Request $request)
-  {
-    $data = $request->all();
+  public function adicionarCasa(Request $request) {
     Casa::create([
-      'imobiliaria' => $data['imobiliaria'],
-      'endereco' => $data['endereco'],
-      'preco' => $data['preco'],
-      'situacao' => $data['situacao']
+      'imobiliaria' => $request->imobiliaria,
+      'endereco' => $request->endereco,
+      'preco' => $request->preco,
+      'situacao' => $request->situacao
     ]);
     return redirect('/');
   }
 
-  public function editarView($id)
-  {
+  public function editarView($id) {
     $casa = Casa::find($id);
-    return view('editar', ['casa' => $casa]);
+    return view('editar', compact('casa'));
   }
 
-  public function editarCasa($id, Request $request)
-  {
-    $data = $request->all();
+  public function editarCasa($id, Request $request) {
     Casa::find($id)->update([
-      'imobiliaria' => $data['imobiliaria'],
-      'endereco' => $data['endereco'],
-      'preco' => $data['preco'],
-      'situacao' => $data['situacao']
+      'imobiliaria' => $request->imobiliaria,
+      'endereco' => $request->endereco,
+      'preco' => $request->preco,
+      'situacao' => $request->situacao
     ]);
     return redirect('/');
   }
 
-  public function deletarCasa($id)
-  {
+  public function deletarCasa($id) {
     Casa::find($id)->delete();
     return redirect('/');
   }

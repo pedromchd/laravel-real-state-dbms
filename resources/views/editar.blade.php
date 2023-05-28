@@ -16,7 +16,7 @@
     </header>
     <main class="flex-grow mt-5 space-y-5">
       <section>
-        <form action='{{ url("editar/$casa[id]") }}' method="post">
+        <form action={{ url("editar/$casa->id") }} method="post">
           @csrf
           <section class="grid grid-cols-2 gap-3">
             <div class="space-y-1">
@@ -45,7 +45,7 @@
             </div>
             <div class="mt-2 space-x-2 col-start-2 place-self-end">
               <input type="submit" value="Enviar" class="cursor-pointer px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">
-              <a href="{{ url('/') }}" class="inline-block px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">Cancelar</a>
+              <a href={{ url('/') }} class="inline-block px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">Cancelar</a>
             </div>
           </section>
         </form>
