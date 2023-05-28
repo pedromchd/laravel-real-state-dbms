@@ -11,7 +11,7 @@
 
 <body class="min-h-screen bg-purple-500 flex justify-center">
   <div class="min-w-[50rem] my-5 p-10 bg-purple-300 rounded-lg shadow-lg">
-    <header class="h-10 flex items-center justify-between">
+    <header class="flex items-center justify-between h-10">
       <h1 class="text-3xl font-bold">Adicionar</h1>
     </header>
     <main class="flex-grow mt-5 space-y-5">
@@ -34,15 +34,14 @@
             <div class="space-y-1">
               <label for="situacao">Situação</label>
               <select name="situacao" id="situacao" required class="w-full p-2 bg-purple-200 rounded-md shadow-md outline-none focus:ring-2 focus:ring-purple-400">
-                <option disabled selected>-- Selecionar --</option>
                 <option value="0">Indisponível</option>
                 <option value="1">À venda</option>
-                <option value="2">Para alugar</option>
+                <option value="2" selected>Para alugar</option>
               </select>
             </div>
             <div class="mt-2 space-x-2 col-start-2 place-self-end">
-              <input type="submit" value="Enviar" class="cursor-pointer px-3 py-2 bg-purple-400 rounded-md shadow-md">
-              <a href="{{ url('/') }}" class="inline-block px-3 py-2 bg-purple-400 rounded-md shadow-md">Cancelar</a>
+              <input type="submit" value="Enviar" class="cursor-pointer px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">
+              <a href="{{ url('/') }}" class="inline-block px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">Cancelar</a>
             </div>
           </section>
         </form>
