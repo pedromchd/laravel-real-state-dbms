@@ -20,4 +20,5 @@ Route::controller(CasaController::class)->group(function () {
   Route::post('/adicionar', 'adicionarCasa');
   Route::get('editar/{id}', 'editar');
   Route::post('editar/{id}', 'editarCasa');
+  Route::get('deletar/{id}', 'deletarCasa');
 });

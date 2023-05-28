@@ -50,7 +50,7 @@
                 </td>
                 <td class="border border-purple-500 text-center">
                   <a href='{{ url("editar/$casa[id]") }}' title="Editar" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">✏️</a>
-                  <a href='{{ url("deleter/$casa[id]") }}' title="Deletar" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">🗑️</a>
+                  <a href='{{ url("deletar/$casa[id]") }}' title="Deletar" onclick="return confirm('Deletar casa?')" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">🗑️</a>
                 </td>
               </tr>
             @endforeach

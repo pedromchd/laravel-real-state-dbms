@@ -47,4 +47,10 @@ class CasaController extends Controller
     ]);
     return redirect('/');
   }
+
+  public function deletarCasa($id)
+  {
+    Casa::find($id)->delete();
+    return redirect('/');
+  }
 }
