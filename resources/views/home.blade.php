@@ -13,7 +13,7 @@
   <div class="min-w-[50rem] my-5 p-10 bg-purple-300 rounded-lg shadow-lg">
     <header class="flex items-center justify-between">
       <h1 class="text-3xl font-bold">Casas</h1>
-      <a href="{{ url('novo') }}" class="px-3 py-2 bg-purple-400 rounded-md shadow-md">Adicionar</a>
+      <a href="{{ url('adicionar') }}" class="px-3 py-2 bg-purple-400 rounded-md shadow-md">Adicionar</a>
     </header>
     <main class="flex-grow mt-5 space-y-5">
       <section>

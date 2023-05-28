@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(CasaController::class)->group(function () {
   Route::get('/', 'home');
+  Route::get('/adicionar', 'adicionar');
+  Route::post('/adicionar', 'adicionarCasa');
 });
