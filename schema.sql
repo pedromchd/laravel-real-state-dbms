@@ -32,7 +32,7 @@ CREATE TABLE `casa` (
   `imobiliaria` varchar(255) NOT NULL,
   `endereco` varchar(255) NOT NULL,
   `preco` decimal(10,2) NOT NULL,
-  `situacao` enum('0','1','2') NOT NULL DEFAULT '0'
+  `situacao` enum('0','1','2') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
