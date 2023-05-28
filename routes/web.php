@@ -18,4 +18,6 @@ Route::controller(CasaController::class)->group(function () {
   Route::get('/', 'home');
   Route::get('/adicionar', 'adicionar');
   Route::post('/adicionar', 'adicionarCasa');
+  Route::get('editar/{id}', 'editar');
+  Route::post('editar/{id}', 'editarCasa');
 });

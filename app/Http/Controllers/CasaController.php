@@ -29,4 +29,22 @@ class CasaController extends Controller
     ]);
     return redirect('/');
   }
+
+  public function editar($id)
+  {
+    $casa = Casa::find($id);
+    return view('editar', ['casa' => $casa]);
+  }
+
+  public function editarCasa($id, Request $request)
+  {
+    $data = $request->all();
+    Casa::find($id)->update([
+      'imobiliaria' => $data['imobiliaria'],
+      'endereco' => $data['endereco'],
+      'preco' => $data['preco'],
+      'situacao' => $data['situacao']
+    ]);
+    return redirect('/');
+  }
 }
