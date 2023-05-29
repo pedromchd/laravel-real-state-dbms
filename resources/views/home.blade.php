@@ -49,7 +49,7 @@
               <tr>
                 <td class="p-2 border border-purple-500">{{ $casa->imobiliaria }}</td>
                 <td class="p-2 border border-purple-500">{{ $casa->endereco }}</td>
-                <td class="p-2 border border-purple-500">
+                <td class="p-2 border border-purple-500 {{ $casa->id === $maisCara ? 'text-yellow-600 font-bold' : '' }}">
                   R$ {{ number_format($casa->preco, 2, ',', '.') }}
                 </td>
                 <td class="p-2 border border-purple-500">

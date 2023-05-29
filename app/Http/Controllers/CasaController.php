@@ -9,10 +9,11 @@ class CasaController extends Controller
 {
   public function homeView(Request $request) {
     $query = $request->input('q', '');
-    $orderBy = $request->get('order_by', 'id');
-    $orderDirection = $request->get('order_direction', 'asc');
+    $orderBy = $request->input('order_by', 'id');
+    $orderDirection = $request->input('order_direction', 'asc');
     $casas = Casa::where('imobiliaria', 'LIKE', "%$query%")->orWhere('endereco', 'LIKE', "%$query%")->orderBy($orderBy, $orderDirection)->get();
-    return view('home', compact('casas', 'query', 'orderBy', 'orderDirection'));
+    $maisCara = $casas->sortByDesc('preco')->first()->id;
+    return view('home', compact('casas', 'maisCara', 'query', 'orderBy', 'orderDirection'));
   }
 
   public function adicionarView() {
