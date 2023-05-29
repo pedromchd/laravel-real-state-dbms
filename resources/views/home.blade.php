@@ -25,8 +25,22 @@
         @if ($casas->isNotEmpty())
           <table class="w-full shadow-md">
             <tr class="bg-purple-400">
-              <th class="p-2 border border-purple-500">Imobiliária</th>
-              <th class="p-2 border border-purple-500">Endereço</th>
+              <th class="p-2 border border-purple-500 relative min-w-[125px]">
+                <a href={{ route('filtrar', ['order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id']) }}>Imobiliária</a>
+                @if ($orderBy === 'imobiliaria')
+                  <a href={{ route('filtrar', ['order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
+                    {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
+                  </a>
+                @endif
+              </th>
+              <th class="p-2 border border-purple-500 relative min-w-[125px]">
+                <a href={{ route('filtrar', ['order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id']) }}>Endereço</a>
+                @if ($orderBy === 'endereco')
+                  <a href={{ route('filtrar', ['order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
+                    {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
+                  </a>
+                @endif
+              </th>
               <th class="p-2 border border-purple-500">Preço</th>
               <th class="p-2 border border-purple-500">Situação</th>
               <th class="p-2 border border-purple-500">Opções</th>

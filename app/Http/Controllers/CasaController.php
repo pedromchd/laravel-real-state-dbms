@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class CasaController extends Controller
 {
-  public function homeView() {
-    $casas = Casa::all();
-    return view('home', compact('casas'));
+  public function homeView(Request $request) {
+    $orderBy = $request->get('order_by', 'id');
+    $orderDirection = $request->get('order_direction', 'asc');
+    $casas = Casa::orderBy($orderBy, $orderDirection)->get();
+    return view('home', compact('casas', 'orderBy', 'orderDirection'));
   }
 
   public function pesquisarCasas(Request $request) {
