@@ -17,7 +17,7 @@
     </header>
     <main class="flex-grow mt-5 space-y-5">
       <section>
-        <form action={{ url('pesquisa') }} method="get">
+        <form action={{ url('filtrar') }} method="get">
           <input type="search" name="q" id="q" value="{{ isset($query) ? $query : '' }}" placeholder="Pesquisar casas por imobiliária e endereço..." class="w-full p-2 bg-purple-200 rounded-md shadow-md outline-none focus:ring-2 focus:ring-purple-400">
         </form>
       </section>
@@ -26,17 +26,17 @@
           <table class="w-full shadow-md">
             <tr class="bg-purple-400">
               <th class="p-2 border border-purple-500 relative min-w-[125px]">
-                <a href={{ route('filtrar', ['order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id']) }}>Imobiliária</a>
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id']) }}>Imobiliária</a>
                 @if ($orderBy === 'imobiliaria')
-                  <a href={{ route('filtrar', ['order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
+                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
                     {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
                   </a>
                 @endif
               </th>
               <th class="p-2 border border-purple-500 relative min-w-[125px]">
-                <a href={{ route('filtrar', ['order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id']) }}>Endereço</a>
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id']) }}>Endereço</a>
                 @if ($orderBy === 'endereco')
-                  <a href={{ route('filtrar', ['order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
+                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
                     {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
                   </a>
                 @endif

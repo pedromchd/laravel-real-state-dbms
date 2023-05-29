@@ -8,16 +8,11 @@ use Illuminate\Http\Request;
 class CasaController extends Controller
 {
   public function homeView(Request $request) {
+    $query = $request->input('q', '');
     $orderBy = $request->get('order_by', 'id');
     $orderDirection = $request->get('order_direction', 'asc');
-    $casas = Casa::orderBy($orderBy, $orderDirection)->get();
-    return view('home', compact('casas', 'orderBy', 'orderDirection'));
-  }
-
-  public function pesquisarCasas(Request $request) {
-    $query = $request->input('q');
-    $casas = Casa::where('imobiliaria', 'LIKE', "%$query%")->orWhere('endereco', 'LIKE', "%$query%")->get();
-    return view('home', compact('casas', 'query'));
+    $casas = Casa::where('imobiliaria', 'LIKE', "%$query%")->orWhere('endereco', 'LIKE', "%$query%")->orderBy($orderBy, $orderDirection)->get();
+    return view('home', compact('casas', 'query', 'orderBy', 'orderDirection'));
   }
 
   public function adicionarView() {

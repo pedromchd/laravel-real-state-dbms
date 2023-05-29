@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(CasaController::class)->group(function () {
   Route::get('/', 'homeView');
-  Route::get('/view', 'homeView')->name('filtrar');
-  Route::get('/pesquisa', 'pesquisarCasas');
+  Route::get('/filtrar', 'homeView')->name('filtrar');
   Route::get('/adicionar', 'adicionarView');
   Route::post('/adicionar', 'adicionarCasa');
   Route::get('editar/{id}', 'editarView');
