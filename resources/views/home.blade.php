@@ -12,7 +12,7 @@
 <body class="min-h-screen bg-purple-500 flex justify-center">
   <div class="min-w-[50rem] my-5 p-10 bg-purple-300 rounded-lg shadow-lg">
     <header class="flex items-center justify-between">
-      <a href={{ url('/') }}><h1 class="text-3xl font-bold">Casas</h1></a>
+      <a href={{ url('/') }} title="Página inicial"><h1 class="text-3xl font-bold">Casas</h1></a>
       <a href={{ url('adicionar') }} class="px-3 py-2 bg-purple-400 rounded-md shadow-md hover:brightness-95 active:ring-2 active:ring-purple-500">Adicionar</a>
     </header>
     <main class="flex-grow mt-5 space-y-5">
@@ -26,17 +26,17 @@
           <table class="w-full shadow-md">
             <tr class="bg-purple-400">
               <th class="p-2 border border-purple-500 relative min-w-[125px]">
-                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id']) }}>Imobiliária</a>
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id']) }} title="Ordenar casas por imobiliária" class="text-purple-950 underline">Imobiliária</a>
                 @if ($orderBy === 'imobiliaria')
-                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
+                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
                     {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
                   </a>
                 @endif
               </th>
               <th class="p-2 border border-purple-500 relative min-w-[125px]">
-                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id']) }}>Endereço</a>
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id']) }} title="Ordenar casas por endereço" class="text-purple-950 underline">Endereço</a>
                 @if ($orderBy === 'endereco')
-                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} class="absolute right-2 hover:brightness-90">
+                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
                     {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
                   </a>
                 @endif
