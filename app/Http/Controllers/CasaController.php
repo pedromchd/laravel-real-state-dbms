@@ -12,8 +12,15 @@ class CasaController extends Controller
     $orderBy = $request->input('order_by', 'id');
     $orderDirection = $request->input('order_direction', 'asc');
     $casas = Casa::where('imobiliaria', 'LIKE', "%$query%")->orWhere('endereco', 'LIKE', "%$query%")->orderBy($orderBy, $orderDirection)->get();
-    $maisCara = $casas->sortByDesc('preco')->first()->id;
-    return view('home', compact('casas', 'maisCara', 'query', 'orderBy', 'orderDirection'));
+    $status = $request->input('status', '3');
+    if ($status !== '3') {
+      $casas = $casas->where('situacao', $status);
+    }
+    $maisCara = '';
+    if ($casas->isNotEmpty()) {
+      $maisCara = $casas->sortByDesc('preco')->first()->id;
+    }
+    return view('home', compact('casas', 'maisCara', 'query', 'status', 'orderBy', 'orderDirection'));
   }
 
   public function adicionarView() {

@@ -22,55 +22,57 @@
         </form>
       </section>
       <section>
-        @if ($casas->isNotEmpty())
-          <table class="w-full shadow-md">
-            <tr class="bg-purple-400">
-              <th class="p-2 border border-purple-500 relative min-w-[125px]">
-                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id']) }} title="Ordenar casas por imobiliária" class="text-purple-950 underline">Imobiliária</a>
-                @if ($orderBy === 'imobiliaria')
-                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
-                    {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
-                  </a>
+        <table class="w-full shadow-md">
+          <tr class="bg-purple-400">
+            <th class="p-2 border border-purple-500 relative min-w-[125px]">
+              <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id', 'status' => $status]) }} title="Ordenar casas por imobiliária" class="text-purple-950 underline">Imobiliária</a>
+              @if ($orderBy === 'imobiliaria')
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc', 'status' => $status]) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
+                  {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
+                </a>
+              @endif
+            </th>
+            <th class="p-2 border border-purple-500 relative min-w-[125px]">
+              <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id', 'status' => $status]) }} title="Ordenar casas por endereço" class="text-purple-950 underline">Endereço</a>
+              @if ($orderBy === 'endereco')
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc', 'status' => $status]) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
+                  {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
+                </a>
+              @endif
+            </th>
+            <th class="p-2 border border-purple-500">Preço</th>
+            <th class="p-2 border border-purple-500">
+              <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy, 'order_direction' => $orderDirection, 'status' => $status === '' ? 0 : ($status + 1)%4 ]) }} title="Ordenar casas por endereço" class="text-purple-950 underline">Situação</a>
+            </th>
+            <th class="p-2 border border-purple-500">Opções</th>
+          </tr>
+          @forelse ($casas as $casa)
+            <tr>
+              <td class="p-2 border border-purple-500">{{ $casa->imobiliaria }}</td>
+              <td class="p-2 border border-purple-500">{{ $casa->endereco }}</td>
+              <td class="p-2 border border-purple-500 {{ $casa->id === $maisCara ? 'text-yellow-600 font-bold' : '' }}">
+                R$ {{ number_format($casa->preco, 2, ',', '.') }}
+              </td>
+              <td class="p-2 border border-purple-500">
+                @if ($casa->situacao == 1)
+                  À venda
+                @elseif ($casa->situacao == 2)
+                  Para alugar
+                @else
+                  Indisponível
                 @endif
-              </th>
-              <th class="p-2 border border-purple-500 relative min-w-[125px]">
-                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id']) }} title="Ordenar casas por endereço" class="text-purple-950 underline">Endereço</a>
-                @if ($orderBy === 'endereco')
-                  <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'endereco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc']) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
-                    {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
-                  </a>
-                @endif
-              </th>
-              <th class="p-2 border border-purple-500">Preço</th>
-              <th class="p-2 border border-purple-500">Situação</th>
-              <th class="p-2 border border-purple-500">Opções</th>
+              </td>
+              <td class="border border-purple-500 text-center">
+                <a href={{ url("editar/$casa->id") }} title="Editar" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">✏️</a>
+                <a href={{ url("deletar/$casa->id") }} title="Deletar" onclick="return confirm('Deletar casa?')" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">🗑️</a>
+              </td>
             </tr>
-            @foreach ($casas as $casa)
-              <tr>
-                <td class="p-2 border border-purple-500">{{ $casa->imobiliaria }}</td>
-                <td class="p-2 border border-purple-500">{{ $casa->endereco }}</td>
-                <td class="p-2 border border-purple-500 {{ $casa->id === $maisCara ? 'text-yellow-600 font-bold' : '' }}">
-                  R$ {{ number_format($casa->preco, 2, ',', '.') }}
-                </td>
-                <td class="p-2 border border-purple-500">
-                  @if ($casa->situacao == 1)
-                    À venda
-                  @elseif ($casa->situacao == 2)
-                    Para alugar
-                  @else
-                    Indisponível
-                  @endif
-                </td>
-                <td class="border border-purple-500 text-center">
-                  <a href={{ url("editar/$casa->id") }} title="Editar" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">✏️</a>
-                  <a href={{ url("deletar/$casa->id") }} title="Deletar" onclick="return confirm('Deletar casa?')" class="inline-block p-1 bg-purple-200 outline outline-1 outline-purple-400 rounded-sm shadow-md hover:brightness-95 active:outline-2">🗑️</a>
-                </td>
-              </tr>
-            @endforeach
-          </table>
-        @else
-          <p>Sem casas para mostrar.</p>
-        @endif
+          @empty
+            <tr>
+              <td class="p-2 border border-purple-500 text-center" colspan="5">Sem casas para mostrar.</td>
+            </tr>
+          @endforelse
+        </table>
       </section>
     </main>
   </div>
