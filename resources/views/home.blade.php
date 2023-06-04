@@ -24,14 +24,7 @@
       <section>
         <table class="w-full shadow-md">
           <tr class="bg-purple-400">
-            <th class="p-2 border border-purple-500 relative min-w-[125px]">
-              <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'imobiliaria' ? 'imobiliaria' : 'id', 'status' => $status]) }} title="Ordenar casas por imobiliária" class="text-purple-950 underline">Imobiliária</a>
-              @if ($orderBy === 'imobiliaria')
-                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'imobiliaria', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc', 'status' => $status]) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
-                  {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
-                </a>
-              @endif
-            </th>
+            <th class="p-2 border border-purple-500">Imobiliária</th>
             <th class="p-2 border border-purple-500 relative min-w-[125px]">
               <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'endereco' ? 'endereco' : 'id', 'status' => $status]) }} title="Ordenar casas por endereço" class="text-purple-950 underline">Endereço</a>
               @if ($orderBy === 'endereco')
@@ -40,7 +33,14 @@
                 </a>
               @endif
             </th>
-            <th class="p-2 border border-purple-500">Preço</th>
+            <th class="p-2 border border-purple-500 relative min-w-[125px]">
+              <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy !== 'preco' ? 'preco' : 'id', 'status' => $status]) }} title="Ordenar casas por preço" class="text-purple-950 underline">Preço</a>
+              @if ($orderBy === 'preco')
+                <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => 'preco', 'order_direction' => $orderDirection === 'asc' ? 'desc' : 'asc', 'status' => $status]) }} title="Inverter ordem da coluna" class="absolute right-2 hover:brightness-90">
+                  {{ $orderDirection === 'asc' ? '⬆️' : '⬇️' }}
+                </a>
+              @endif
+            </th>
             <th class="p-2 border border-purple-500">
               <a href={{ route('filtrar', ['q' => $query ?: '', 'order_by' => $orderBy, 'order_direction' => $orderDirection, 'status' => $status === '' ? 0 : ($status + 1)%4 ]) }} title="Ordenar casas por endereço" class="text-purple-950 underline">Situação</a>
             </th>

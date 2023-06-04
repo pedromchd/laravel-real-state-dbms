@@ -16,9 +16,11 @@ class CasaController extends Controller
     if ($status !== '3') {
       $casas = $casas->where('situacao', $status);
     }
-    $maisCara = '';
-    if ($casas->isNotEmpty()) {
-      $maisCara = $casas->sortByDesc('preco')->first()->id;
+    $maisCara = $casas->where('situacao', '!=', '0');
+    if ($maisCara->isNotEmpty()) {
+      $maisCara = $maisCara->sortByDesc('preco')->first()->id;
+    } else {
+      $maisCara = '';
     }
     return view('home', compact('casas', 'maisCara', 'query', 'status', 'orderBy', 'orderDirection'));
   }
